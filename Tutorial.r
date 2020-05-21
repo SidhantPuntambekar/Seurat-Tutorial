@@ -41,3 +41,9 @@ VizDimLoadings(pbmc, dims = 1:2, reduction = "pca")
 DimPlot(pbmc, reduction = "pca")
 DimHeatmap(pbmc, dims = 1, cells = 500, balanced = TRUE)
 DimHeatmap(pbmc, dims = 1:15, cells = 500, balanced = TRUE)
+
+#Determine Dimensionality of data set. May take time to run so comment out if taking too much CPU
+pbmc <- JackStraw(pbmc, num.replicate = 100)
+pbmc <- ScoreJackStraw(pbmc, dims = 1:20)
+JackStrawPlot(pbmc, dims = 1:15)
+ElbowPlot(pbmc)
